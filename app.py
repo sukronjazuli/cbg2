@@ -1,15 +1,7 @@
 import streamlit as st
 import os
 import sys
-import json
 from dotenv import load_dotenv
-
-# Configure page to hide menu at the very beginning
-st.set_page_config(
-    page_title="Analisis Dokumen AI dengan RAG",
-    page_icon="📄",
-    menu_items=None
-)
 
 # Pustaka LangChain & Komponen AI
 from langchain_community.document_loaders import TextLoader
@@ -108,8 +100,8 @@ def run_qa_chain(db, query):
             )
 
             st.info(f"Mengajukan pertanyaan: '{query}'")
-            # Menggunakan metode invoke yang lebih modern dengan instruksi bahasa Indonesia
-            response = qa_chain.invoke(f"Jawab dalam bahasa Indonesia: {query}")
+            # Menggunakan metode invoke yang lebih modern
+            response = qa_chain.invoke(query)
             return response['result']
         except Exception as e:
             st.error(f"ERROR saat menjalankan Q&A: {e}")
@@ -117,41 +109,11 @@ def run_qa_chain(db, query):
 
 # --- MAIN STREAMLIT APP ---
 def main():
-    # Hide Streamlit menu and footer
-    hide_streamlit_style = """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    .stDeployButton {display: none;}
-    [data-testid="stToolbar"] {visibility: hidden;}
-    [data-testid="stDecoration"] {visibility: hidden;}
-    .css-1rs6os {visibility: hidden;}
-    .css-1lsmgbg {visibility: hidden;}
-    .viewerBadge_container__1QSob {display: none;}
-    .viewerBadge_link__1S137 {display: none;}
-    </style>
-    """
-    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
     st.title("📄 Analisis Dokumen AI dengan RAG")
     st.markdown("Aplikasi untuk menganalisis dokumen menggunakan Retrieval-Augmented Generation (RAG) dengan Gemini AI.")
 
     # Setup environment
     setup_environment()
-
-    # History file
-    history_file = "chat_history.json"
-
-    # Load history from file if exists
-    if os.path.exists(history_file):
-        try:
-            with open(history_file, "r", encoding="utf-8") as f:
-                st.session_state.history = json.load(f)
-        except:
-            st.session_state.history = []
-    else:
-        st.session_state.history = []
 
     # File configuration
     text_file = "contoh_dokumen_extracted_extracted.txt"
@@ -165,33 +127,26 @@ def main():
         document_chunks = load_and_split_documents(text_file)
         vector_db = index_documents(document_chunks)
 
-        # Display chat history
-        for chat in st.session_state.history:
-            with st.chat_message("user"):
-                st.write(chat["question"])
-            with st.chat_message("assistant"):
-                st.write(chat["answer"])
+        # Question input
+        st.header("❓ Ajukan Pertanyaan")
+        pertanyaan_user = st.text_area(
+            "Masukkan pertanyaan Anda tentang dokumen:",
+            value="Jelaskan secara rinci tentang bagian penting terkait tanggung jawab manajemen yang disebutkan di dalam dokumen ini.",
+            height=100
+        )
 
-        # Chat input
-        pertanyaan_user = st.chat_input("Ajukan pertanyaan Anda tentang dokumen:")
-
-        if pertanyaan_user:
+        if st.button("🔍 Analisis Dokumen", type="primary"):
             if pertanyaan_user.strip():
                 # Run Q&A
                 final_answer = run_qa_chain(vector_db, pertanyaan_user)
 
-                # Add to history
-                st.session_state.history.append({"question": pertanyaan_user, "answer": final_answer})
-
-                # Save history to file
-                with open(history_file, "w", encoding="utf-8") as f:
-                    json.dump(st.session_state.history, f, ensure_ascii=False, indent=4)
-
-                # Display new chat messages
-                with st.chat_message("user"):
-                    st.write(pertanyaan_user)
-                with st.chat_message("assistant"):
-                    st.write(final_answer)
+                # Display results
+                st.header("📊 Hasil Analisis AI (GEMINI)")
+                st.subheader(f"Pertanyaan: {pertanyaan_user}")
+                st.markdown("---")
+                st.write(final_answer)
+                st.markdown("---")
+                st.success("Analisis selesai!")
             else:
                 st.warning("Silakan masukkan pertanyaan terlebih dahulu.")
 
