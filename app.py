@@ -451,39 +451,75 @@ def main():
     
     hide_streamlit_style = """
 
-    <style>
-    /* Sembunyikan menu hamburger Streamlit (titik tiga) */
-    #MainMenu {
-        visibility: hidden;
-    }
+<style>
+/* Sembunyikan menu hamburger Streamlit (titik tiga) */
+#MainMenu {
+    visibility: hidden;
+}
+
+/* Sembunyikan footer "Made with Streamlit" */
+footer {
+    visibility: hidden;
+}
+footer:after {
+    content:'';
+    visibility: visible;
+    display: block;
+}
+
+/* Sembunyikan badge/watermark Streamlit */
+.viewerBadge_container__1QSob,
+.viewerBadge_link__1S137,
+.viewerBadge_text__1JaDO {
+    display: none !important;
+}
+
+/* SEMBUNYIKAN LOGO MERAH DI TOMBOL CHAT INPUT */
+.stChatInputSubmitButton svg,
+[data-testid="stChatInputSubmitButton"] svg,
+button[kind="primary"] svg {
+    display: none !important;
+}
+
+/* Atau ganti dengan icon arrow biasa */
+.stChatInputSubmitButton::after {
+    content: "→";
+    font-size: 20px;
+}
+
+    # <style>
+    # /* Sembunyikan menu hamburger Streamlit (titik tiga) */
+    # #MainMenu {
+    #     visibility: hidden;
+    # }
     
-    /* Sembunyikan footer "Made with Streamlit" */
-    footer {
-        visibility: hidden;
-    }
-    footer:after {
-        content:'';
-        visibility: visible;
-        display: block;
-    }
+    # /* Sembunyikan footer "Made with Streamlit" */
+    # footer {
+    #     visibility: hidden;
+    # }
+    # footer:after {
+    #     content:'';
+    #     visibility: visible;
+    #     display: block;
+    # }
     
-    /* Sembunyikan badge/watermark Streamlit */
-    .viewerBadge_container__1QSob,
-    .viewerBadge_link__1S137,
-    .viewerBadge_text__1JaDO {
-        display: none !important;
-    }
+    # /* Sembunyikan badge/watermark Streamlit */
+    # .viewerBadge_container__1QSob,
+    # .viewerBadge_link__1S137,
+    # .viewerBadge_text__1JaDO {
+    #     display: none !important;
+    # }
     
-    /* SEMBUNYIKAN LOGO MERAH STREAMLIT */
-    [data-testid="stStatusWidget"] {
-        display: none !important;
-    }
+    # /* SEMBUNYIKAN LOGO MERAH STREAMLIT */
+    # [data-testid="stStatusWidget"] {
+    #     display: none !important;
+    # }
     
-    /* Atau pakai ini kalau yang atas tidak work */
-    div[data-testid="stStatusWidget"],
-    .stAppDeployButton {
-        display: none !important;
-    }
+    # /* Atau pakai ini kalau yang atas tidak work */
+    # div[data-testid="stStatusWidget"],
+    # .stAppDeployButton {
+    #     display: none !important;
+    # }
 
 /* Sembunyikan semua status widget termasuk logo merah */
 [data-testid="stStatusWidget"],
@@ -514,6 +550,11 @@ def main():
     # .viewerBadge_text__1JaDO {
     #     display: none !important;
     # }
+
+    /* Sembunyikan semua SVG di dalam tombol chat */
+.stChatInput button svg {
+    display: none !important;
+}
 
     # <style>
     # #MainMenu {visibility: hidden;}
