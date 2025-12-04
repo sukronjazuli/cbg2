@@ -450,20 +450,7 @@ def main():
     # Hide Streamlit menu and footer - UI/UX LENGKAP DARI KODE LAMA
     
     hide_streamlit_style = """
-    
-    # <style>
-    # #MainMenu {visibility: hidden;}
-    # footer {visibility: hidden;}
-    # header {visibility: hidden;}
-    # .stDeployButton {display: none;}
-    # [data-testid="stToolbar"] {visibility: hidden;}
-    # [data-testid="stDecoration"] {visibility: hidden;}
-    # .css-1rs6os {visibility: hidden;}
-    # .css-1lsmgbg {visibility: hidden;}
-    # .viewerBadge_container__1QSob {display: none;}
-    # .viewerBadge_link__1S137 {display: none;}
 
-    
     <style>
     /* Sembunyikan menu hamburger Streamlit (titik tiga) */
     #MainMenu {
@@ -484,6 +471,18 @@ def main():
     .viewerBadge_text__1JaDO {
         display: none !important;
     }
+
+    # <style>
+    # #MainMenu {visibility: hidden;}
+    # footer {visibility: hidden;}
+    # header {visibility: hidden;}
+    # .stDeployButton {display: none;}
+    # [data-testid="stToolbar"] {visibility: hidden;}
+    # [data-testid="stDecoration"] {visibility: hidden;}
+    # .css-1rs6os {visibility: hidden;}
+    # .css-1lsmgbg {visibility: hidden;}
+    # .viewerBadge_container__1QSob {display: none;}
+    # .viewerBadge_link__1S137 {display: none;}
     
     /* Center content container for better readability */
     [data-testid="stAppViewContainer"] > section > div {
