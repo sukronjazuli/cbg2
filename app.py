@@ -470,6 +470,14 @@ def main():
         display: none !important;
     }
 
+/* Ubah warna SVG logo di tombol chat input */
+.stChatInput button svg,
+.stChatInput button svg path,
+.stChatInput button svg g {
+    fill: white !important;
+    color: white !important;
+}
+
     # <style>
     # #MainMenu {visibility: hidden;}
     # footer {visibility: hidden;}
