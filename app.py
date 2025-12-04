@@ -11,7 +11,7 @@ from typing import List, Dict
 st.set_page_config(
     page_title="Analisis Dokumen AI dengan RAG",
     page_icon="📄",
-    layout="wide",
+    layout="centered",
     menu_items=None
 )
 
