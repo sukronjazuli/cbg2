@@ -450,6 +450,7 @@ def main():
     # Hide Streamlit menu and footer - UI/UX LENGKAP DARI KODE LAMA
     
     hide_streamlit_style = """
+    
     <style>
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
@@ -462,7 +463,7 @@ def main():
     .viewerBadge_container__1QSob {display: none;}
     .viewerBadge_link__1S137 {display: none;}
 
-    # hide_streamlit_style = """
+    
     # <style>
     # /* Sembunyikan menu hamburger Streamlit (titik tiga) */
     # #MainMenu {
