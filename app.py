@@ -494,7 +494,7 @@ def main():
     }
     
     section[data-testid="stSidebar"] > div {
-        background-color: #181818 !important;
+        background-color: #fff !important;
     }
     
     /* Main content background */
@@ -801,7 +801,7 @@ def main():
     section[data-testid="stSidebar"],
     section[data-testid="stSidebar"] > div,
     section[data-testid="stSidebar"] * {
-        background-color: #fff !important;
+        background-color: #000 !important;
     }
 
     # /* Exception for buttons - keep original color */
