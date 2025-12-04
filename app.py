@@ -708,7 +708,8 @@ def main():
     
     /* Area behind chat input */
     .stChatFloatingInputContainer {
-        background-color: #212121 !important;
+        # background-color: #212121 !important;
+        background-color: #1a1a1a;
     }
     
     div[class*="stChatFloating"] {
@@ -808,7 +809,8 @@ def main():
     
     /* Adjust chat input container position - less margin */
     .stChatInputContainer {
-        margin-bottom: 0rem !important;
+        # margin-bottom: 0rem !important;
+        border-radius: 20px;  /* ubah bentuk */
     }
 
     /* Sidebar background - all elements inside */
