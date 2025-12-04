@@ -469,35 +469,6 @@ def main():
     .viewerBadge_text__1JaDO {
         display: none !important;
     }
-
-/* FIX: Munculkan tombol close (X) di sidebar mobile */
-section[data-testid="stSidebar"] button[kind="header"],
-section[data-testid="stSidebar"] [data-testid="baseButton-header"],
-section[data-testid="stSidebar"] button[aria-label="Close sidebar"] {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* Pastikan icon X terlihat */
-section[data-testid="stSidebar"] button[kind="header"] svg,
-section[data-testid="stSidebar"] [data-testid="baseButton-header"] svg {
-    display: block !important;
-    visibility: visible !important;
-    fill: #ffffff !important;
-}
-
-/* Mobile specific - paksa munculkan tombol close */
-@media (max-width: 768px) {
-    section[data-testid="stSidebar"] button[kind="header"] {
-        display: flex !important;
-        visibility: visible !important;
-        position: absolute !important;
-        top: 0.5rem !important;
-        right: 0.5rem !important;
-        z-index: 9999 !important;
-    }
-}
     
     /* Center content container for better readability */
     [data-testid="stAppViewContainer"] > section > div {
@@ -826,12 +797,39 @@ section[data-testid="stSidebar"] [data-testid="baseButton-header"] svg {
         margin-bottom: 0rem !important;
     }
 
-    /* Sidebar background - all elements inside */
-    section[data-testid="stSidebar"],
-    section[data-testid="stSidebar"] > div,
-    section[data-testid="stSidebar"] * {
-        background-color: #181818 !important;
-    }
+    # /* Sidebar background - all elements inside */
+    # section[data-testid="stSidebar"],
+    # section[data-testid="stSidebar"] > div,
+    # section[data-testid="stSidebar"] * {
+    #     background-color: #181818 !important;
+    # }
+
+/* Sidebar background - TANPA WILDCARD */
+section[data-testid="stSidebar"],
+section[data-testid="stSidebar"] > div {
+    background-color: #181818 !important;
+}
+
+/* Exception: Pastikan tombol close TETAP TERLIHAT */
+section[data-testid="stSidebar"] button[kind="header"],
+section[data-testid="stSidebar"] button[aria-label*="Close"],
+section[data-testid="stSidebar"] [data-testid="baseButton-header"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background-color: transparent !important;
+    position: absolute !important;
+    top: 0.75rem !important;
+    right: 0.75rem !important;
+    z-index: 99999 !important;
+}
+
+/* Icon X harus putih agar terlihat */
+section[data-testid="stSidebar"] button[kind="header"] svg,
+section[data-testid="stSidebar"] button[aria-label*="Close"] svg {
+    fill: #ffffff !important;
+    display: block !important;
+}
 
     # /* Exception for buttons - keep original color */
     # section[data-testid="stSidebar"] button[kind="primary"],
