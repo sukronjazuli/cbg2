@@ -448,18 +448,41 @@ Jawaban (ringkas & akurat):"""
         # --- MAIN STREAMLIT APP ---
 def main():
     # Hide Streamlit menu and footer - UI/UX LENGKAP DARI KODE LAMA
+    
+    # hide_streamlit_style = """
+    # <style>
+    # #MainMenu {visibility: hidden;}
+    # footer {visibility: hidden;}
+    # header {visibility: hidden;}
+    # .stDeployButton {display: none;}
+    # [data-testid="stToolbar"] {visibility: hidden;}
+    # [data-testid="stDecoration"] {visibility: hidden;}
+    # .css-1rs6os {visibility: hidden;}
+    # .css-1lsmgbg {visibility: hidden;}
+    # .viewerBadge_container__1QSob {display: none;}
+    # .viewerBadge_link__1S137 {display: none;}
+
     hide_streamlit_style = """
     <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    .stDeployButton {display: none;}
-    [data-testid="stToolbar"] {visibility: hidden;}
-    [data-testid="stDecoration"] {visibility: hidden;}
-    .css-1rs6os {visibility: hidden;}
-    .css-1lsmgbg {visibility: hidden;}
-    .viewerBadge_container__1QSob {display: none;}
-    .viewerBadge_link__1S137 {display: none;}
+    /* Sembunyikan menu hamburger Streamlit (titik tiga) */
+    #MainMenu {
+        visibility: hidden;
+    }
+    /* Sembunyikan footer "Made with Streamlit" */
+    footer {
+        visibility: hidden;
+    }
+    footer:after {
+        content:'';
+        visibility: visible;
+        display: block;
+    }
+    /* Sembunyikan badge/watermark Streamlit */
+    .viewerBadge_container__1QSob,
+    .viewerBadge_link__1S137,
+    .viewerBadge_text__1JaDO {
+        display: none !important;
+    }
     
     /* Center content container for better readability */
     [data-testid="stAppViewContainer"] > section > div {
