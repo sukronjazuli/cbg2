@@ -559,31 +559,6 @@ def main():
     [data-testid="stChatInput"] textarea::placeholder {
         color: rgba(255, 255, 255, 0.7) !important;
     }
-
-/* Submit button - WARNA PUTIH/TRANSPARAN */
-[data-testid="stChatInput"] button[data-testid="stChatInputSubmitButton"],
-[data-testid="stChatInput"] button,
-[data-testid="stChatInput"] button[kind="primary"],
-[data-testid="stChatInput"] button[type="submit"] {
-    background-color: transparent !important;
-    background: transparent !important;
-    color: #ffffff !important;
-    border: none !important;
-}
-
-/* Submit button hover */
-[data-testid="stChatInput"] button:hover,
-[data-testid="stChatInput"] button[type="submit"]:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Icon SVG di dalam button - PUTIH */
-[data-testid="stChatInput"] button svg,
-[data-testid="stChatInput"] button svg path {
-    fill: #ffffff !important;
-    color: #ffffff !important;
-}
     
     # /* Submit button (send button) - more specific selector */
     # [data-testid="stChatInput"] button[data-testid="stChatInputSubmitButton"],
