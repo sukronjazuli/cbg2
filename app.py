@@ -469,6 +469,35 @@ def main():
     .viewerBadge_text__1JaDO {
         display: none !important;
     }
+
+/* FIX: Munculkan tombol close (X) di sidebar mobile */
+section[data-testid="stSidebar"] button[kind="header"],
+section[data-testid="stSidebar"] [data-testid="baseButton-header"],
+section[data-testid="stSidebar"] button[aria-label="Close sidebar"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Pastikan icon X terlihat */
+section[data-testid="stSidebar"] button[kind="header"] svg,
+section[data-testid="stSidebar"] [data-testid="baseButton-header"] svg {
+    display: block !important;
+    visibility: visible !important;
+    fill: #ffffff !important;
+}
+
+/* Mobile specific - paksa munculkan tombol close */
+@media (max-width: 768px) {
+    section[data-testid="stSidebar"] button[kind="header"] {
+        display: flex !important;
+        visibility: visible !important;
+        position: absolute !important;
+        top: 0.5rem !important;
+        right: 0.5rem !important;
+        z-index: 9999 !important;
+    }
+}
     
     /* Center content container for better readability */
     [data-testid="stAppViewContainer"] > section > div {
@@ -801,7 +830,7 @@ def main():
     section[data-testid="stSidebar"],
     section[data-testid="stSidebar"] > div,
     section[data-testid="stSidebar"] * {
-        background-color: #000 !important;
+        background-color: #181818 !important;
     }
 
     # /* Exception for buttons - keep original color */
