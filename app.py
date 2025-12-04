@@ -7,11 +7,12 @@ from dotenv import load_dotenv
 from datetime import datetime
 from typing import List, Dict
 
-# Configure page
+# Configure page to hide menu at the very beginning
 st.set_page_config(
     page_title="Analisis Dokumen AI dengan RAG",
     page_icon="📄",
-    layout="centered"
+    layout="centered",
+    menu_items=None
 )
 
 # Pustaka LangChain & Komponen AI
@@ -393,40 +394,164 @@ Jawaban (ringkas & akurat):"""
             st.error(f"❌ ERROR: {e}")
             return f"Maaf, terjadi kesalahan: {str(e)}"
 
-# --- MAIN APP ---
+# --- MAIN STREAMLIT APP ---
 def main():
-    st.title("📄 Analisis Dokumen AI dengan RAG")
+    # CSS FIXED - Professional design dengan bug diperbaiki
+    hide_streamlit_style = """
+    <style>
+    /* === HIDE STREAMLIT BRANDING === */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    footer:after {content:''; visibility: visible; display: block;}
+    .viewerBadge_container__1QSob,
+    .viewerBadge_link__1S137,
+    .viewerBadge_text__1JaDO {display: none !important;}
     
+    /* === DARK MODE BACKGROUND === */
+    .stApp,
+    [data-testid="stAppViewContainer"],
+    [data-testid="stHeader"],
+    section[data-testid="stMain"],
+    .main,
+    .block-container {
+        background-color: #212121 !important;
+    }
+    
+    /* === SIDEBAR STYLING (TANPA WILDCARD!) === */
+    section[data-testid="stSidebar"],
+    section[data-testid="stSidebar"] > div:first-child {
+        background-color: #181818 !important;
+    }
+    
+    /* FIX: Pastikan tombol close sidebar TETAP TERLIHAT */
+    section[data-testid="stSidebar"] button[kind="header"],
+    section[data-testid="stSidebar"] button[aria-label*="Close"] {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Icon X di tombol close */
+    section[data-testid="stSidebar"] button[kind="header"] svg {
+        fill: #ffffff !important;
+        display: block !important;
+    }
+    
+    /* === CHAT INPUT STYLING === */
+    [data-testid="stChatInput"] textarea {
+        background-color: #2f2f2f !important;
+        color: #ffffff !important;
+        border-color: #444 !important;
+    }
+    
+    [data-testid="stChatInput"] textarea::placeholder {
+        color: rgba(255, 255, 255, 0.5) !important;
+    }
+    
+    /* === CHAT MESSAGES === */
+    .user-message-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .user-message-container > div {
+        background-color: #2f2f2f;
+        color: #ececec;
+        padding: 0.75rem 1rem;
+        border-radius: 1.25rem;
+        max-width: 70%;
+        text-align: left;
+        word-wrap: break-word;
+    }
+    
+    .assistant-message-container {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .assistant-message-container > div {
+        background-color: transparent;
+        color: #ececec;
+        padding: 0.75rem 0.5rem;
+        max-width: 100%;
+        width: 100%;
+        line-height: 1.75;
+    }
+    
+    /* === SIDEBAR TOGGLE BUTTON === */
+    [data-testid="collapsedControl"] {
+        background-color: #3b82f6 !important;
+        border-radius: 0.6rem !important;
+    }
+    
+    [data-testid="collapsedControl"]:hover {
+        background-color: #2563eb !important;
+    }
+    
+    /* === MOBILE RESPONSIVE === */
+    @media (max-width: 768px) {
+        /* Pastikan tombol close visible di mobile */
+        section[data-testid="stSidebar"] button[kind="header"] {
+            display: flex !important;
+            position: absolute !important;
+            top: 1rem !important;
+            right: 1rem !important;
+            z-index: 9999 !important;
+        }
+        
+        .user-message-container > div {
+            max-width: 85%;
+            font-size: 1rem;
+        }
+        
+        .assistant-message-container > div {
+            font-size: 1rem;
+        }
+    }
+    </style>
+    """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
     setup_environment()
     user_id = get_or_create_user_id()
     initialize_conversation_state(user_id)
 
     # Sidebar
     with st.sidebar:
-        st.header("💬 Riwayat Chat")
+        st.markdown("### 💬 Riwayat Chat")
         
         if st.button("➕ Percakapan Baru", use_container_width=True, type="primary"):
             create_new_conversation()
             st.rerun()
         
-        st.divider()
+        st.markdown("<br>", unsafe_allow_html=True)
         
         conversations = get_user_conversations(user_id)
         
         if conversations:
-            st.caption(f"📋 {len(conversations)} percakapan tersimpan")
+            col_h1, col_h2 = st.columns([5, 2])
+            with col_h1:
+                st.markdown(f"<small style='color: #999;'>📋 {len(conversations)} histori tersimpan</small>", unsafe_allow_html=True)
             
-            for conv in conversations:
-                col1, col2 = st.columns([4, 1])
+            st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
+            
+            for idx, conv in enumerate(conversations):
+                col1, col2 = st.columns([7, 1])
                 
                 with col1:
                     is_active = conv['id'] == st.session_state.current_conversation_id
+                    display_title = conv['title']
                     
                     if st.button(
-                        conv['title'],
+                        display_title,
                         key=f"conv_{conv['id']}",
                         use_container_width=True,
-                        disabled=is_active
+                        disabled=is_active,
+                        type="primary" if is_active else "secondary"
                     ):
                         conv_data = load_conversation(user_id, conv['id'])
                         if conv_data:
@@ -436,7 +561,7 @@ def main():
                             st.rerun()
                 
                 with col2:
-                    if st.button("🗑", key=f"del_{conv['id']}"):
+                    if st.button("🗑", key=f"del_{conv['id']}", help="Hapus"):
                         if delete_conversation(user_id, conv['id']):
                             if conv['id'] == st.session_state.current_conversation_id:
                                 remaining_convs = get_user_conversations(user_id)
@@ -450,19 +575,57 @@ def main():
                                 else:
                                     create_new_conversation()
                             st.rerun()
-        else:
-            st.info("💭 Belum ada percakapan")
         
-        st.divider()
-        st.caption(f"🔐 Session: {user_id[:12]}...")
+        else:
+            st.markdown("""
+            <div style='text-align: center; padding: 2rem 1rem; color: #666;'>
+                <p style='font-size: 2rem; margin: 0;'>💭</p>
+                <p style='font-size: 0.9rem; margin-top: 0.5rem;'>Belum ada percakapan</p>
+                <p style='font-size: 0.8rem; color: #999;'>Mulai chat untuk membuat percakapan baru</p>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        st.markdown("<hr style='margin: 1.5rem 0; border: none; border-top: 1px solid #333;'>", unsafe_allow_html=True)
+        
+        st.markdown(f"<small style='color: #999;'>🔐 Session: <code>{user_id[:12]}...</code></small>", unsafe_allow_html=True)
+        
+        st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
+        
+        with st.expander("💡 Tips Penggunaan"):
+            st.markdown("""
+            **Cara Kerja Persistensi:**
+            
+            - 🔖 Histori tersimpan di komputer ini
+            - 🔄 Refresh halaman = histori tetap ada
+            - 💻 Ganti komputer = histori berbeda
+            
+            **Fitur:**
+            
+            - ✅ Histori otomatis tersimpan
+            - ✅ Percakapan tidak hilang saat refresh
+            - ✅ Level 5 RAG: Multi-Query Fusion
+            - ✅ Smart Chunking
+            """)
+        
+        st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
         
         if st.button("🔄 Reset Session", use_container_width=True):
             reset_user_session()
             st.rerun()
 
     # Main content
-    st.subheader(f"💬 {st.session_state.conversation_title}")
-    st.caption(f"📊 {len(st.session_state.current_messages)} pesan")
+    st.markdown("""
+    <h1 style='font-size: 1.8rem; font-weight: 700; margin-top: -4rem; margin-bottom: 0.5rem; color: #fff;'>
+        📄 Analisis Panduan Manual Verifikasi Klaim INA-CBG Edisi 2 Dengan AI
+    </h1>
+    """, unsafe_allow_html=True)
+
+    col_title, col_info = st.columns([3, 1])
+    with col_title:
+        st.markdown(f"### 💬 {st.session_state.conversation_title}")
+    with col_info:
+        st.caption(f"📊 {len(st.session_state.current_messages)} pesan")
+
     st.divider()
 
     json_file = "medical_database_structured.json"
@@ -476,33 +639,70 @@ def main():
         documents = create_smart_chunks(json_data)
         vector_db = create_vector_store(documents)
 
-        st.success(f"✅ Database loaded: {json_data['metadata']['total_cases']} cases dari {len(json_data['metadata']['categories'])} kategori")
+        st.markdown(f"""
+        <div style="background-color: #1e3a5f; color: #fff; padding: 0.75rem 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+            ✅ Database loaded: {json_data['metadata']['total_cases']} cases dari {len(json_data['metadata']['categories'])} kategori
+        </div>
+        """, unsafe_allow_html=True)
 
         if len(st.session_state.current_messages) == 0:
-            st.info("👋 Selamat datang! Tanya tentang diagnosa, kode ICD-10, atau aspek koding.")
+            st.markdown("""
+            <p style="color: #fff; background: transparent; padding: 0.75rem 1rem; margin: 1rem 0;">
+                👋 Selamat datang! Database siap dianalisis. Tanya tentang diagnosa, kode ICD-10, atau aspek koding.
+            </p>
+            """, unsafe_allow_html=True)
         
         for msg in st.session_state.current_messages:
-            with st.chat_message("user"):
-                st.write(msg["question"])
-            with st.chat_message("assistant"):
-                st.write(msg["answer"])
+            import html
+            question_text = html.escape(msg["question"]).replace("\n", "<br>")
+            answer_text = html.escape(msg["answer"]).replace("\n", "<br>")
+            
+            st.markdown(f"""
+            <div class="user-message-container">
+                <div>{question_text}</div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown(f"""
+            <div class="assistant-message-container">
+                <div>{answer_text}</div>
+            </div>
+            """, unsafe_allow_html=True)
 
         pertanyaan_user = st.chat_input("💭 Ajukan pertanyaan Anda ...")
+        
+        st.markdown("""
+        <div style="position: fixed; bottom: 0; left: 0; right: 0; text-align: center; padding: 0.7rem; background: rgba(18,18,18,0.95); z-index: 999; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p style="font-size: 0.85rem; color: #e0e0e0; margin: 0;">
+                Powered by: <a href="https://rekam-medis.id" target="_blank" style="color: #60a5fa; text-decoration: none;">https://rekam-medis.id</a>
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
 
         if pertanyaan_user:
             if pertanyaan_user.strip():
-                with st.chat_message("user"):
-                    st.write(pertanyaan_user)
+                import html
+                question_escaped = html.escape(pertanyaan_user).replace("\n", "<br>")
+                
+                st.markdown(f"""
+                <div class="user-message-container">
+                    <div>{question_escaped}</div>
+                </div>
+                """, unsafe_allow_html=True)
                 
                 final_answer = run_advanced_rag(vector_db, json_data, pertanyaan_user)
-                
-                with st.chat_message("assistant"):
-                    st.write(final_answer)
+                answer_escaped = html.escape(final_answer).replace("\n", "<br>")
+
+                st.markdown(f"""
+                <div class="assistant-message-container">
+                    <div>{answer_escaped}</div>
+                </div>
+                """, unsafe_allow_html=True)
 
                 chat_entry = {
                     "question": pertanyaan_user,
                     "answer": final_answer,
-                    "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # ← dilengkapi
                 }
                 st.session_state.current_messages.append(chat_entry)
 
