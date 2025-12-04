@@ -490,7 +490,7 @@ def main():
     }
     
     section[data-testid="stSidebar"] {
-        background-color: #fff !important;
+        background-color: #181818 !important;
     }
     
     section[data-testid="stSidebar"] > div {
