@@ -560,24 +560,24 @@ def main():
         color: rgba(255, 255, 255, 0.7) !important;
     }
     
-    /* Submit button (send button) - more specific selector */
-    [data-testid="stChatInput"] button[data-testid="stChatInputSubmitButton"],
-    [data-testid="stChatInput"] button,
-    [data-testid="stChatInput"] button[kind="primary"],
-    [data-testid="stChatInput"] button[type="submit"] {
-        background-color: #ff4b4b !important;
-        background: #ff4b4b !important;
-        color: #ffffff !important;
-        border-color: #ff4b4b !important;
-    }
+    # /* Submit button (send button) - more specific selector */
+    # [data-testid="stChatInput"] button[data-testid="stChatInputSubmitButton"],
+    # [data-testid="stChatInput"] button,
+    # [data-testid="stChatInput"] button[kind="primary"],
+    # [data-testid="stChatInput"] button[type="submit"] {
+    #     background-color: #ff4b4b !important;
+    #     background: #ff4b4b !important;
+    #     color: #ffffff !important;
+    #     border-color: #ff4b4b !important;
+    # }
     
-    /* Submit button hover */
-    [data-testid="stChatInput"] button:hover,
-    [data-testid="stChatInput"] button[type="submit"]:hover {
-        background-color: #e03e3e !important;
-        background: #e03e3e !important;
-        border-color: #e03e3e !important;
-    }
+    # /* Submit button hover */
+    # [data-testid="stChatInput"] button:hover,
+    # [data-testid="stChatInput"] button[type="submit"]:hover {
+    #     background-color: #e03e3e !important;
+    #     background: #e03e3e !important;
+    #     border-color: #e03e3e !important;
+    # }
     
     /* Bottom section background */
     .stBottom {
@@ -647,20 +647,20 @@ def main():
         background: #303030 !important;
     }
     
-    /* Submit button (send button) - MUST BE AFTER wildcard to override */
-    [data-testid="stChatInput"] button {
-        background-color: #ff4b4b !important;
-        background: #ff4b4b !important;
-        color: #ffffff !important;
-        border-color: #ff4b4b !important;
-    }
+    # /* Submit button (send button) - MUST BE AFTER wildcard to override */
+    # [data-testid="stChatInput"] button {
+    #     background-color: #ff4b4b !important;
+    #     background: #ff4b4b !important;
+    #     color: #ffffff !important;
+    #     border-color: #ff4b4b !important;
+    # }
     
-    /* Submit button hover */
-    [data-testid="stChatInput"] button:hover {
-        background-color: #e03e3e !important;
-        background: #e03e3e !important;
-        border-color: #e03e3e !important;
-    }
+    # /* Submit button hover */
+    # [data-testid="stChatInput"] button:hover {
+    #     background-color: #e03e3e !important;
+    #     background: #e03e3e !important;
+    #     border-color: #e03e3e !important;
+    # }
     
     /* Override any black backgrounds */
     *[style*="background-color: rgb(0, 0, 0)"],
