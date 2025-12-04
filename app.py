@@ -485,6 +485,15 @@ def main():
         display: none !important;
     }
 
+/* Sembunyikan semua status widget termasuk logo merah */
+[data-testid="stStatusWidget"],
+[data-testid="stAppDeployButton"],
+.stAppDeployButton,
+.stStatusWidget {
+    visibility: hidden !important;
+    display: none !important;
+}
+
     # <style>
     # /* Sembunyikan menu hamburger Streamlit (titik tiga) */
     # #MainMenu {
