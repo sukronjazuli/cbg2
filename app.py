@@ -469,26 +469,6 @@ def main():
     .viewerBadge_text__1JaDO {
         display: none !important;
     }
-
-/* Ubah warna SVG logo di tombol chat input */
-.stChatInput button svg,
-.stChatInput button svg path,
-.stChatInput button svg g {
-    fill: white !important;
-    color: white !important;
-}
-
-    # <style>
-    # #MainMenu {visibility: hidden;}
-    # footer {visibility: hidden;}
-    # header {visibility: hidden;}
-    # .stDeployButton {display: none;}
-    # [data-testid="stToolbar"] {visibility: hidden;}
-    # [data-testid="stDecoration"] {visibility: hidden;}
-    # .css-1rs6os {visibility: hidden;}
-    # .css-1lsmgbg {visibility: hidden;}
-    # .viewerBadge_container__1QSob {display: none;}
-    # .viewerBadge_link__1S137 {display: none;}
     
     /* Center content container for better readability */
     [data-testid="stAppViewContainer"] > section > div {
