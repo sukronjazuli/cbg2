@@ -632,13 +632,13 @@ def main():
         background-color: #212121 !important;
     }
     
-    /* Exception for Streamlit buttons - restore original background */
-    button[kind="primary"],
-    button[kind="secondary"],
-    .stButton > button {
-        background-color: initial !important;
-        background: initial !important;
-    }
+    # /* Exception for Streamlit buttons - restore original background */
+    # button[kind="primary"],
+    # button[kind="secondary"],
+    # .stButton > button {
+    #     background-color: initial !important;
+    #     background: initial !important;
+    # }
     
     /* Chat input styling - force blue color */
     [data-testid="stChatInput"],
@@ -804,13 +804,13 @@ def main():
         background-color: #181818 !important;
     }
 
-    /* Exception for buttons - keep original color */
-    section[data-testid="stSidebar"] button[kind="primary"],
-    section[data-testid="stSidebar"] button[kind="secondary"],
-    section[data-testid="stSidebar"] .stButton > button {
-        background-color: initial !important;
-        background: initial !important;
-    }
+    # /* Exception for buttons - keep original color */
+    # section[data-testid="stSidebar"] button[kind="primary"],
+    # section[data-testid="stSidebar"] button[kind="secondary"],
+    # section[data-testid="stSidebar"] .stButton > button {
+    #     background-color: initial !important;
+    #     background: initial !important;
+    # }
     
     /* Mobile responsive styling for chat bubbles */
     @media (max-width: 768px) {
