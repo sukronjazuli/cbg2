@@ -632,13 +632,13 @@ def main():
         background-color: #212121 !important;
     }
     
-    # /* Exception for Streamlit buttons - restore original background */
-    # button[kind="primary"],
-    # button[kind="secondary"],
-    # .stButton > button {
-    #     background-color: initial !important;
-    #     background: initial !important;
-    # }
+    /* Exception for Streamlit buttons - restore original background */
+    button[kind="primary"],
+    button[kind="secondary"],
+    .stButton > button {
+        background-color: initial !important;
+        background: initial !important;
+    }
     
     /* Chat input styling - force blue color */
     [data-testid="stChatInput"],
@@ -797,47 +797,20 @@ def main():
         margin-bottom: 0rem !important;
     }
 
-    # /* Sidebar background - all elements inside */
-    # section[data-testid="stSidebar"],
-    # section[data-testid="stSidebar"] > div,
-    # section[data-testid="stSidebar"] * {
-    #     background-color: #181818 !important;
-    # }
+    /* Sidebar background - all elements inside */
+    section[data-testid="stSidebar"],
+    section[data-testid="stSidebar"] > div,
+    section[data-testid="stSidebar"] * {
+        background-color: #181818 !important;
+    }
 
-/* Sidebar background - TANPA WILDCARD */
-section[data-testid="stSidebar"],
-section[data-testid="stSidebar"] > div {
-    background-color: #181818 !important;
-}
-
-/* Exception: Pastikan tombol close TETAP TERLIHAT */
-section[data-testid="stSidebar"] button[kind="header"],
-section[data-testid="stSidebar"] button[aria-label*="Close"],
-section[data-testid="stSidebar"] [data-testid="baseButton-header"] {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    background-color: transparent !important;
-    position: absolute !important;
-    top: 0.75rem !important;
-    right: 0.75rem !important;
-    z-index: 99999 !important;
-}
-
-/* Icon X harus putih agar terlihat */
-section[data-testid="stSidebar"] button[kind="header"] svg,
-section[data-testid="stSidebar"] button[aria-label*="Close"] svg {
-    fill: #ffffff !important;
-    display: block !important;
-}
-
-    # /* Exception for buttons - keep original color */
-    # section[data-testid="stSidebar"] button[kind="primary"],
-    # section[data-testid="stSidebar"] button[kind="secondary"],
-    # section[data-testid="stSidebar"] .stButton > button {
-    #     background-color: initial !important;
-    #     background: initial !important;
-    # }
+    /* Exception for buttons - keep original color */
+    section[data-testid="stSidebar"] button[kind="primary"],
+    section[data-testid="stSidebar"] button[kind="secondary"],
+    section[data-testid="stSidebar"] .stButton > button {
+        background-color: initial !important;
+        background: initial !important;
+    }
     
     /* Mobile responsive styling for chat bubbles */
     @media (max-width: 768px) {
