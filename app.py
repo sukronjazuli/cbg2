@@ -433,7 +433,7 @@ def main():
     """
     # st.title("📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI")
     st.markdown("""
-        <h1 style='margin-top: -3rem; padding-top: 2;'>
+        <h1 style='margin-top: 1rem; padding-top: 1;'>
             📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI
         </h1>
     """, unsafe_allow_html=True)
