@@ -14,6 +14,26 @@ st.set_page_config(
     layout="centered"
 )
 
+# Custom CSS
+st.markdown("""
+    <style>
+    /* Tombol Percakapan Baru - Transparan */
+    .stButton > button[kind="primary"] {
+        background-color: transparent !important;
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .stButton > button[kind="primary"]:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border-color: rgba(255, 255, 255, 0.6) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # Pustaka LangChain & Komponen AI
 from langchain_core.documents import Document
 from langchain_community.embeddings import SentenceTransformerEmbeddings
