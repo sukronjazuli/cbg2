@@ -22,10 +22,9 @@ st.markdown("""
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
-    
     h1 {
         margin-top: -1rem;
-        padding-top: 0;
+        padding-top: 3;
     }
     /* Tombol Percakapan Baru - Transparan */
     .stButton > button[kind="primary"] {
