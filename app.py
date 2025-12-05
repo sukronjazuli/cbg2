@@ -395,6 +395,22 @@ Jawaban (ringkas & akurat):"""
 
 # --- MAIN APP ---
 def main():
+    # CSS untuk tombol transparan
+    hide_streamlit_style = """
+    <style>
+    /* Tombol Percakapan Baru - Transparan */
+    section[data-testid="stSidebar"] button[kind="primary"] {
+        background-color: transparent !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        color: #ffffff !important;
+    }
+    
+    section[data-testid="stSidebar"] button[kind="primary"]:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border-color: rgba(255, 255, 255, 0.5) !important;
+    }
+    </style>
+    """
     # st.title("📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI")
     st.markdown("""
         <h1 style='margin-top: -3rem; padding-top: 2;'>
