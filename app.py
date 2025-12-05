@@ -9,7 +9,7 @@ from typing import List, Dict
 
 # Configure page
 st.set_page_config(
-    page_title="Analisis Dokumen AI dengan RAG",
+    page_title="Analisis Panduan Manual Verifikasi Klaim INA-CBG Edisi 2 Dengan AI",
     page_icon="📄",
     layout="centered"
 )
@@ -395,7 +395,7 @@ Jawaban (ringkas & akurat):"""
 
 # --- MAIN APP ---
 def main():
-    st.title("📄 Analisis Dokumen AI dengan RAG")
+    st.title("📄 Analisis Panduan Manual Verifikasi Klaim INA-CBG Edisi 2 Dengan AI")
     
     setup_environment()
     user_id = get_or_create_user_id()
