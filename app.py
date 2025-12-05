@@ -17,6 +17,16 @@ st.set_page_config(
 # Custom CSS
 st.markdown("""
     <style>
+    /* Menggeser judul ke atas */
+    .main .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    h1 {
+        margin-top: -1rem;
+        padding-top: 0;
+    }
     /* Tombol Percakapan Baru - Transparan */
     .stButton > button[kind="primary"] {
         background-color: transparent !important;
@@ -415,29 +425,12 @@ Jawaban (ringkas & akurat):"""
 
 # --- MAIN APP ---
 def main():
-    # CSS untuk tombol transparan
-    hide_streamlit_style = """
-    <style>
-    /* Tombol Percakapan Baru - Transparan */
-    section[data-testid="stSidebar"] button[kind="primary"] {
-        background-color: transparent !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        color: #ffffff !important;
-    }
-    
-    section[data-testid="stSidebar"] button[kind="primary"]:hover {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        border-color: rgba(255, 255, 255, 0.5) !important;
-    }
-    </style>
-    """
-    # st.title("📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI")
-    st.markdown("""
-        <h1 style='margin-top: 1rem; padding-top: 1;'>
-            📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI
-        </h1>
-    """, unsafe_allow_html=True)
-    
+    st.title("📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI")
+    # st.markdown("""
+    #     <h1 style='margin-top: 1rem; padding-top: 1;'>
+    #         📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI
+    #     </h1>
+    # """, unsafe_allow_html=True)
     
     setup_environment()
     user_id = get_or_create_user_id()
