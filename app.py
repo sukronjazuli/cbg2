@@ -417,9 +417,9 @@ Jawaban (ringkas & akurat):"""
 def main():
     # st.title("📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI")
     st.markdown("""
-        <h1 style='margin-top: -3rem; padding-top: 0;'>
+        <h2 style='margin-top: -3rem; padding-top: 0;'>
             📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI
-        </h1>
+        </h2>
     """, unsafe_allow_html=True)
     
     setup_environment()
