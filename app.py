@@ -9,7 +9,7 @@ from typing import List, Dict
 
 # Configure page
 st.set_page_config(
-    page_title="Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI",
+    page_title="Analisis Klaim INA-CBG Edisi 2 Berbasis AI",
     page_icon="📄",
     layout="centered"
 )
@@ -415,10 +415,10 @@ Jawaban (ringkas & akurat):"""
 
 # --- MAIN APP ---
 def main():
-    # st.title("📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI")
+    # st.title("📄 Analisis Klaim INA-CBG Edisi 2 Berbasis AI")
     st.markdown("""
         <h1 style='margin-top: -3rem; padding-top: 0;'>
-            📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI
+            📄 Analisis Klaim INA-CBG Edisi 2 Berbasis AI
         </h1>
     """, unsafe_allow_html=True)
     
