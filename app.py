@@ -19,7 +19,7 @@ st.markdown("""
     <style>
     /* Menggeser judul ke atas */
     .main .block-container {
-        padding-top: 2rem;
+        padding-top: -2rem;
         padding-bottom: 2rem;
     }
     h1 {
