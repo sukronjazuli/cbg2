@@ -17,15 +17,6 @@ st.set_page_config(
 # Custom CSS
 st.markdown("""
     <style>
-    /* Menggeser judul ke atas */
-    .main .block-container {
-        padding-top: -2rem;
-        padding-bottom: 2rem;
-    }
-    h1 {
-        margin-top: -4rem;
-        padding-top: 0;
-    }
     /* Tombol Percakapan Baru - Transparan */
     .stButton > button[kind="primary"] {
         background-color: transparent !important;
@@ -424,12 +415,12 @@ Jawaban (ringkas & akurat):"""
 
 # --- MAIN APP ---
 def main():
-    st.title("📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI")
-    # st.markdown("""
-    #     <h1 style='margin-top: 1rem; padding-top: 1;'>
-    #         📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI
-    #     </h1>
-    # """, unsafe_allow_html=True)
+    # st.title("📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI")
+    st.markdown("""
+        <h1 style='margin-top: -3rem; padding-top: 0;'>
+            📄 Analisis Verifikasi Klaim INA-CBG Edisi 2 Dengan AI
+        </h1>
+    """, unsafe_allow_html=True)
     
     setup_environment()
     user_id = get_or_create_user_id()
