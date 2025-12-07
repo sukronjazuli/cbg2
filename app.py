@@ -9,30 +9,10 @@ from typing import List, Dict
 
 # Configure page
 st.set_page_config(
-    page_title="Analisis Klaim INA-CBG Edisi 2 Berbasis AI",
+    page_title="Analisis Dokumen AI dengan RAG",
     page_icon="📄",
     layout="centered"
 )
-
-# Custom CSS
-st.markdown("""
-    <style>
-    /* Tombol Percakapan Baru - Transparan */
-    .stButton > button[kind="primary"] {
-        background-color: transparent !important;
-        border: 2px solid rgba(255, 255, 255, 0.3) !important;
-        color: white !important;
-        transition: all 0.3s ease !important;
-    }
-    
-    .stButton > button[kind="primary"]:hover {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        border-color: rgba(255, 255, 255, 0.6) !important;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 # Pustaka LangChain & Komponen AI
 from langchain_core.documents import Document
@@ -415,12 +395,7 @@ Jawaban (ringkas & akurat):"""
 
 # --- MAIN APP ---
 def main():
-    # st.title("📄 Analisis Klaim INA-CBG Edisi 2 Berbasis AI")
-    st.markdown("""
-        <h1 style='margin-top: -3rem; padding-top: 0;'>
-            📄 Analisis Klaim INA-CBG Edisi 2 Berbasis AI
-        </h1>
-    """, unsafe_allow_html=True)
+    st.title("📄 Analisis Dokumen AI dengan RAG")
     
     setup_environment()
     user_id = get_or_create_user_id()
